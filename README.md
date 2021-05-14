@@ -1,5 +1,5 @@
-# plotMap
-O projeto 'plotMap' tem por objetivo fornecer uma forma simples de plotar mapas.
+# mapLoaders
+O projeto 'mapLoaders' tem por objetivo fornecer código para leitura de arquivos para uso no projeto 'plotMap'.
 O código é livre (licença MIT) e conto com a colaboração de todos para o seu aperfeiçoamento.
 
 <img src="mapa_home.png" width="200"> <img src="mapa_home_2.png" width="200">
@@ -7,11 +7,10 @@ O código é livre (licença MIT) e conto com a colaboração de todos para o se
 ## Utilização:
 
 Em breve. 
-Mas o arquivo 'exemplo.py' já lhe dará uma boa noção de como utilizar o código.
 
 ## Dependências:
 
-Matplotlib e Cartopy.
+plotMap
 
 ## Licença:
 
