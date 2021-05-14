@@ -10,7 +10,7 @@ Em breve.
 
 ## Dependências:
 
-plotMap
+[plotMap](https://github.com/NelsonBittencourt/plotMap)
 
 ## Licença:
 
