@@ -6,7 +6,11 @@ O código é livre (licença MIT) e conto com a colaboração de todos para o se
 
 ## Utilização:
 
-Em breve. 
+Em breve. Mas o arquivo 'mapLoaders_exemplos.py' pode lhe ajudar muito a como utilizar as funções do 'mapLoaders'
+
+## Função já implementadas:
+
+### chuvaTxtONS : Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS.
 
 ## Dependências:
 
