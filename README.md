@@ -5,9 +5,11 @@ O código é livre (licença MIT) e conto com a colaboração de todos para o se
 <img src="txtsONS/Saida/ETA40_fig_dia_1.jpg" width="400"> <img src="txtsONS/Saida/GEFS_fig_dia_1.jpg" width="400"> <img src="txtsONS/Saida/ECMWF_fig_dia_1.jpg" width="400"> <img src="txtsONS/Saida/ETA40_fig_total.jpg" width="400">
 
 
+
 ## Utilização:
 
 Em breve. Mas o arquivo 'mapLoaders_exemplos.py' pode lhe ajudar muito a como utilizar as funções do 'mapLoaders'
+
 
 
 ## Funções já implementadas:
@@ -16,14 +18,17 @@ Em breve. Mas o arquivo 'mapLoaders_exemplos.py' pode lhe ajudar muito a como ut
 Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS.
 
 
+
 ## Dependências:
 
 [plotMap](https://github.com/NelsonBittencourt/plotMap)
 
 
+
 ## Licença:
 
 [Ver licença](LICENSE)
+
 
 
 ## Sobre o autor:
