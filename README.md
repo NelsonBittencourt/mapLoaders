@@ -2,7 +2,7 @@
 O projeto 'mapLoaders' tem por objetivo fornecer código para leitura de arquivos para uso no projeto 'plotMap'.
 O código é livre (licença MIT) e conto com a colaboração de todos para o seu aperfeiçoamento.
 
-<img src="txtsONS/Saida/ETA40_fig_dia_1.jpg" width="400"> <img src="txtsONS/Saida/GEFS_fig_dia_1.jpg" width="400"> <img src="txtsONS/Saida/ECMWF_fig_dia_1.jpg" width="400"> <img src="txtsONS/Saida/ETA40_fig_total.jpg" width="400">
+<img src="txtsONS/Saida/ETA40_fig_dia_1.jpg" width="300"> <img src="txtsONS/Saida/GEFS_fig_dia_1.jpg" width="300"> <img src="txtsONS/Saida/ECMWF_fig_dia_1.jpg" width="300"> <img src="txtsONS/Saida/ETA40_fig_total.jpg" width="300">
 
 
 
