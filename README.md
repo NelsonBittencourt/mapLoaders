@@ -10,7 +10,8 @@ Em breve. Mas o arquivo 'mapLoaders_exemplos.py' pode lhe ajudar muito a como ut
 
 ## Funções já implementadas:
 
-### chuvaTxtONS : Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS.
+### chuvaTxtONS :
+Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS.
 
 ## Dependências:
 
