@@ -17,12 +17,15 @@ Em breve. Mas o arquivo 'mapLoaders_exemplos.py' pode lhe ajudar muito a como ut
 ### chuvaTxtONS :
 Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS.
 
+### chuvaEtaCPTEC:
+Lê os arquivos de precipitação prevista pelo modelo ETA do CPTEC (formato grib-1). 
+Esta função poderá ser alterada para obter dados de arquivos grib-1 ou grib-2.
 
 
 ## Dependências:
 
 [plotMap](https://github.com/NelsonBittencourt/plotMap)
-
+[oygrib] ()
 
 
 ## Licença:
