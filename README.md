@@ -34,6 +34,9 @@ Esta função poderá ser alterada para obter dados de arquivos grib-1 ou grib-2
 [Ver licença](LICENSE)
 
 
+## Projeto relacionado:
+
+[plotMap](https://github.com/NelsonBittencourt/plotMap)
 
 ## Sobre o autor:
 
