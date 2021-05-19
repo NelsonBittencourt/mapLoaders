@@ -27,7 +27,7 @@ Esta função poderá ser alterada para obter dados de arquivos grib-1 ou grib-2
 [plotMap](https://github.com/NelsonBittencourt/plotMap)
 
 [pygrib](https://github.com/jswhit/pygrib)
-
+Em uma de minhas instalações (Win10 + Miniconda + Python 3.9.4) foi necessário criar a variável de ambiente 'ECCODES_DEFINITION_PATH' apontando para "C:\Users\<Usuario_Ativo>\miniconda3\Library\share\eccodes\definitions"
 
 ## Licença:
 
