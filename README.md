@@ -15,11 +15,10 @@ Em breve. Mas o arquivo 'mapLoaders_exemplos.py' pode lhe ajudar muito a como ut
 ## Funções já implementadas:
 
 ### chuvaTxtONS :
-Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS.
+Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS (modelos ETA40, GEFS50 e ECMWF).
 
-### chuvaEtaCPTEC:
-Lê os arquivos de precipitação prevista pelo modelo ETA do CPTEC (formato grib-1). 
-Esta função poderá ser alterada para obter dados de arquivos grib-1 ou grib-2.
+### chuvaCPTEC:
+Lê os arquivos de precipitação prevista pelos modelos ETA e WRF do CPTEC (formatos grib-1 e grib-2, respectivamente). 
 
 
 ## Dependências:
@@ -30,6 +29,7 @@ Esta função poderá ser alterada para obter dados de arquivos grib-1 ou grib-2
 
 Em uma de minhas instalações (Win10 + Miniconda + Python 3.9.4) foi necessário criar a variável de ambiente 'ECCODES_DEFINITION_PATH' apontando para "C:\Users\<Usuario_Ativo>\miniconda3\Library\share\eccodes\definitions" para que o pygrib funcionasse corretamente.
 
+
 ## Licença:
 
 [Ver licença](LICENSE)
@@ -38,6 +38,7 @@ Em uma de minhas instalações (Win10 + Miniconda + Python 3.9.4) foi necessári
 ## Projeto relacionado:
 
 [plotMap](https://github.com/NelsonBittencourt/plotMap)
+
 
 ## Sobre o autor:
 
