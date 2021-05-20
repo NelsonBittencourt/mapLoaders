@@ -27,7 +27,7 @@ Lê os arquivos de precipitação prevista pelos modelos ETA e WRF do CPTEC (for
 
 [pygrib](https://github.com/jswhit/pygrib)
 
-Em uma de minhas instalações (Win10 + Miniconda + Python 3.9.4) foi necessário criar a variável de ambiente 'ECCODES_DEFINITION_PATH' apontando para "C:\Users\<Usuario_Ativo>\miniconda3\Library\share\eccodes\definitions" para que o pygrib funcionasse corretamente.
+Em uma de minhas instalações (Win10 + Miniconda + Python 3.9.4) foi necessário criar a variável de ambiente 'ECCODES_DEFINITION_PATH' apontando para "C:\Users\[Usuario_Ativo]\miniconda3\Library\share\eccodes\definitions" para que o pygrib funcionasse corretamente.
 
 
 ## Licença:
