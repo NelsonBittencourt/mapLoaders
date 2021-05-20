@@ -5,7 +5,7 @@
 Rotinas para interpretar vários formatos de dados para utilização no 'plotMap'
               
 Autor   : Nelson Rossi Bittencourt
-Versão  : 0.1
+Versão  : 0.11
 Licença : MIT
 Dependências: numpy, pygrib (que tem várias dependências adicionais) e re
 
@@ -15,7 +15,7 @@ Dependências: numpy, pygrib (que tem várias dependências adicionais) e re
 
     ou 
 
-    pip install pygrib
+        pip install pygrib
 
 
 ******************************************************************************
@@ -119,7 +119,7 @@ def chuvaTxtONS(nomeArquivo, soValores=False):
         return lons, lats, chuva
 
 
-def chuvaEtaCPTEC(nomeArquivo, numMsgGrib, multChuva):
+def chuvaCPTEC(nomeArquivo, numMsgGrib, multChuva):
     """
     Lê os dados de chuva prevista dos arquivos do modelo ETA do CPTEC.
 
@@ -135,7 +135,7 @@ def chuvaEtaCPTEC(nomeArquivo, numMsgGrib, multChuva):
     numMsgGrib : número da mensagem do arquivo 'grib' com os dados de chuva.
         Para o modelo ETA do CPTEC, a mensagem de chuva é a 14.
 
-    multChuva : valor númerico para multiplicar o vetor de chuva final.
+    multChuva : valor numérico para multiplicar o vetor de chuva final.
         Para o modelo ETA, o multiplicador deve ser 1000.
         
     

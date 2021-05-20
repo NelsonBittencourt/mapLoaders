@@ -5,7 +5,7 @@
 Rotinas de exemplo do uso do módulo 'mapLoaders'
               
 Autor   : Nelson Rossi Bittencourt
-Versão  : 0.1
+Versão  : 0.11
 Licença : MIT
 Dependências: plotMap, mapLoaders
 ******************************************************************************
@@ -57,7 +57,7 @@ def exemploTxtsONS():
         for dia in range(1,numDias+1):
 
             # Caminho completo para o arquivo de cada dia.
-            fileName = '{}/{}/{}_{}.dat'.format(dirEntrada,nomeModelo, nomeModelo,dia)
+            fileName = '{0}/{1}/{1}_{2}.dat'.format(dirEntrada,nomeModelo, dia)
             
             # Se for o primeiro dia, lê as longitudes e latitudes.
             # Caso contrário, lê apenas as chuvas previstas.
@@ -71,7 +71,7 @@ def exemploTxtsONS():
 
             # Plota o mapa diário.
             plotMap.plotarMapa(
-                                titulo='Modelo {}\nDia {}'.format(nomeModelo,dia),
+                                titulo='Modelo {} - TXT ONS\nDia {}'.format(nomeModelo,dia),
                                 lons=lons,
                                 lats=lats,
                                 dados=chuva,
@@ -81,7 +81,7 @@ def exemploTxtsONS():
 
         # Plota o mapa com a soma de todos os dias.
         plotMap.plotarMapa(
-                            titulo='Modelo {}\nSoma dos {} dias'.format(nomeModelo,numDias),
+                            titulo='Modelo {} - TXT ONS\nSoma dos {} dias'.format(nomeModelo,numDias),
                             lons=lons,
                             lats=lats,
                             dados=chuvaTotal,
@@ -90,43 +90,86 @@ def exemploTxtsONS():
                             )
 
 
-def exemploEtaCPTEC():
+def exemploCPTEC(modelo):
     """
-    Lê arquivos tipo 'grib' com precipitações previstas através do modelo ETA.
+    Lê arquivos tipo 'grib' (versão 1 ou 2) com precipitações previstas através dos modelos ETA e WRF.    
     Estes arquivos são disponibilizados pelo CPTEC em sua área FTP.
 
-    Este exemplo, com pequenas alterações, poderá ser utilizado para os demais modelos 
-    que o CPTEC utiliza (WRF e BAM).
+
+    Argumento
+    ---------
+
+    modelo : poder ser 'ETA' ou ' WRF'
+
+
+    Retorno
+    -------
+    nenhum
 
     """
 
+    # TODO: Passar as datas e horas como argumento da função.
+    # Data e hora. Estes valores estão fixos no exemplo.    
+    hora = 0            # Hora inicial 
+    dia0 = 19           # Dia da rodada
+    dia =  20           # Dia inicial da previsão
+    ano = '2021'        # Ano 
+    mes = '05'          # Mês
+
+    # TODO: Passar o flag com argumento da função.
     # Flag para determina se serão plotados os mapas horários (True) ou não (False).
     flagPlotaDiario = True
 
+
+    # Determina os parâmetros de cada modelo.
+    # Importante: 
+    # 1) ainda não confirmei os valores da variável 'multiplicador' para cada modelo;
+    # 2) o número da mensagem para as precipitações previstas nos arquivos grib (numMsgGrib)
+    # foi adotado como 14 para o modelo ETA e 1 para o modelo WRF. No caso do WRF, foram utilizados
+    # os arquivos de 'cortes' da pasta 'prec' do FTP do CPTEC. Essa escolha foi baseada no tamanho dos 
+    # arquivos. Se você escolher os arquivos 'brutos' do WRF, a mensagem será outra.
+    if (modelo=='ETA'):
+        filePrefix = 'eta_40km'
+        filePosfix = 'grb'
+        dateSeparator = '+'
+        multiplicador = 1000
+        numMsgGrib = 14
+    elif (modelo=='WRF'):
+        filePrefix='wrf_cpt_05KM'
+        filePosfix = 'grib2'
+        dateSeparator = '_'
+        multiplicador = 1/24
+        numMsgGrib = 1
+    else:
+        raise NameError("Para utilizar essa função é necessário fornecer o nome do modelo como argumento.")
+
+
+    # Diretórios de entrada e saída.
+    dirEntrada = '{0}/Entrada'.format(modelo)
+    dirSAida = '{0}/Saida'.format(modelo)
+
+    # TODO: Passar o template de mapa com argumento da função.
     # Cria um objeto 'Mapa', com o modelo de mapa, para uso no plotMap.
     mapaModelo = plotMap.loadMapTemplate('template/ChuvaPrevistaONS.dat')
 
     # Variável que conterá o somatório das chuvas diárias.
-    chuvaTotal =  0
-    
-    # Hora e dia iniciais.
-    hora = 12
-    dia = 18
+    chuvaTotal =  0      
 
-    # Cria uma string para o dia inicial, considerando o formato da 'string' do arquivo original do modelo.
-    sDia0 = f'{dia:02d}'
+    # String para a data da rodada.
+    sDataRodada = ano + mes + f'{dia0:02d}' + '00'
 
-    # Loop para o número de períodos (no caso do ETA, 24 horas).
+    # String para conter a parte fixa do caminho dos arquivo a serem lidos.
+    fileNameFixo = '{}/{}_{}'.format(dirEntrada, filePrefix, sDataRodada)
+
+    # Loop para o número de períodos. Neste exemplo 24 períodos.
     for i in range(24):                                                       
         
-        sHora = f'{hora:02d}'           # String com a hora formatada.
-        sDia = f'{dia:02d}'             # String com o dia formatado.
+        sHora = f'{hora:02d}'                           # String com a hora formatada.
+        sDia = f'{dia:02d}'                             # String com o dia formatado.
+        sDataPrevisao = ano + mes + sDia + sHora        # String com a data da previsão
 
-        # Nome do arquivo do modelo ETA        
-        fileName = 'eta40_CPTEC/Entrada/eta_40km_202105{}00+202105{}{}.grb'.format(sDia0,sDia,sHora)        
-        
-        # Em testes. Nome do arquivo WRF.
-        #fileName = 'WRF_CPTEC/Entrada/WRF_cpt_05KM_202105{}00_202105{}{}.grib2'.format(sDia0,sDia,sHora)
+        # Criar uma string com caminho completo do arquivo a ser lido.        
+        fileName = '{}{}{}.{}'.format(fileNameFixo, dateSeparator, sDataPrevisao, filePosfix)
 
         hora = hora + 1                 # Incrementa a hora.
 
@@ -136,11 +179,11 @@ def exemploEtaCPTEC():
             dia = dia + 1
 
         # Obtem os valores do arquivo 'grib' do ETA.
-        lons, lats, chuva = mapLoaders.chuvaEtaCPTEC(fileName,14,1000)
+        #lons, lats, chuva = mapLoaders.chuvaEtaCPTEC(fileName,14,1000)
         
-        # Em testes. Obtem os valores valor do modelo WRF do CPTEC.
-        # Nos testes estou utilizando cortes só com a precipitação, por isso a mensagem do arquivo 'grib2' é igual a 1.
-        #lons, lats, chuva = mapLoaders.chuvaEtaCPTEC(fileName,1,1/24)
+        # Lê as coordenadas e a chuva prevista de cada arquivo. 
+        # Preste antenção às variáveis 'numMsgGrib' e 'multiplicador'.
+        lons, lats, chuva = mapLoaders.chuvaCPTEC(fileName,numMsgGrib,multiplicador)
         
         # Acumulador de chuva.
         chuvaTotal = chuvaTotal + chuva
@@ -148,24 +191,26 @@ def exemploEtaCPTEC():
         # Plota mapa para cada período (caso flagPlotaDiario = True).
         if (flagPlotaDiario):
             plotMap.plotarMapa(
-                               titulo='Modelo ETA CPTEC Grib\nDia {} - Hora {}'.format(sDia,sHora),
+                               titulo='Modelo {} - CPTEC Grib\nDia {}; Hora {}'.format(modelo, sDia,sHora),
                                lons=lons,
                                lats=lats,
                                dados=chuva,
                                modeloMapa=mapaModelo,
-                               destino='eta40_CPTEC/ETA_CPTEC_grib_{}{}'.format(sDia,sHora) + '.jpg'
+                               #destino='eta40_CPTEC/ETA_CPTEC_grib_{}{}'.format(sDia,sHora) + '.jpg'
+                               destino='{}/{}_Diario_{}_{}.jpg'.format(dirSAida,filePrefix, sDia, sHora)
                                )
 
     # Plota mapa com valor acumulado.
-    plotMap.plotarMapa(
-                        titulo='Modelo ETA CPTEC Grib\nSomatório das Horas',
+    plotMap.plotarMapa(                        
+                        titulo='Modelo {} - CPTEC Grib\nSomatório das Horas'.format(modelo),
                         lons=lons,
                         lats=lats,
                         dados=chuvaTotal,
                         modeloMapa=mapaModelo,
-                        destino='eta40_CPTEC/Saida/ETA_CPTEC_grib_Total.jpg'
+                        #destino='eta40_CPTEC/Saida/ETA_CPTEC_grib_Total.jpg'
+                        destino='{}/{}_Total.jpg'.format(dirSAida,modelo)
                         )
 
 if __name__ == '__main__':
     exemploTxtsONS()
-    exemploEtaCPTEC()
+    exemploCPTEC(modelo='WRF')
