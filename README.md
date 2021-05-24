@@ -1,4 +1,4 @@
-# mapLoaders
+# mapLoaders versão 0.111
 O projeto 'mapLoaders' tem por objetivo fornecer código para leitura de arquivos para uso no projeto 'plotMap'.
 O código é livre (licença MIT) e conto com a colaboração de todos para o seu aperfeiçoamento.
 
