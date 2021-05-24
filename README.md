@@ -20,6 +20,8 @@ Lê os dados de chuva prevista dos arquivos texto fornecidos pelo ONS (modelos E
 ### chuvaCPTEC:
 Lê os arquivos de precipitação prevista pelos modelos ETA e WRF do CPTEC (formatos grib-1 e grib-2, respectivamente). 
 
+### chuvaSateliteONS:
+Lê arquivos texto com chuvas verificadas por satélite. Estes arquivos são disponibilizados pelo ONS.
 
 ## Dependências:
 
