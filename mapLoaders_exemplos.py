@@ -5,7 +5,7 @@
 Rotinas de exemplo do uso do módulo 'mapLoaders'
               
 Autor   : Nelson Rossi Bittencourt
-Versão  : 0.11
+Versão  : 0.111
 Licença : MIT
 Dependências: plotMap, mapLoaders
 ******************************************************************************
@@ -99,12 +99,13 @@ def exemploCPTEC(modelo):
     Argumento
     ---------
 
-    modelo : poder ser 'ETA' ou ' WRF'
+    modelo : pode ser 'ETA' ou ' WRF'.
 
 
     Retorno
     -------
-    nenhum
+    
+    Nenhum.
 
     """
 
@@ -211,6 +212,42 @@ def exemploCPTEC(modelo):
                         destino='{}/{}_Total.jpg'.format(dirSAida,modelo)
                         )
 
+def exemploSateliteONS():
+    """
+    Plota em um mapa os dados de chuva verificada por satélite.
+
+    Importante: a rotina utilizada para ler este tipo dados deve ser utilizada com um modelo
+    de mapa do tipo 'xy'. Veja o método 'mapLoaders.chuvaSateliteONS' para mais informações. 
+    
+    Argumentos
+    ----------
+    Nenhum.
+
+    
+    Retornos
+    --------
+    Nenhum.
+        
+    """
+
+    # Carrega o template já considerando a tipo de mapa como 'xy'.
+    mapaModelo = plotMap.loadMapTemplate('template/ChuvaSatONS.dat')
+
+    # Lê os dados do arquivo.
+    lons, lats, chuva = mapLoaders.chuvaSateliteONS('precSatONS/psat_23052021.txt')
+    
+    # Plota o mapa.
+    plotMap.plotarMapa(
+                       titulo='Chuva por Satélite ONS',
+                       lons=lons,
+                       lats=lats,
+                       dados=chuva,
+                       modeloMapa=mapaModelo,                       
+                       destino='precSatONS/test_precSatONS.jpg'
+                       )
+    
+
 if __name__ == '__main__':
     exemploTxtsONS()
     exemploCPTEC(modelo='WRF')
+    exemploSateliteONS()
