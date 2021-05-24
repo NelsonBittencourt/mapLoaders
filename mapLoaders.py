@@ -5,7 +5,7 @@
 Rotinas para interpretar vários formatos de dados para utilização no 'plotMap'
               
 Autor   : Nelson Rossi Bittencourt
-Versão  : 0.11
+Versão  : 0.111
 Licença : MIT
 Dependências: numpy, pygrib (que tem várias dependências adicionais) e re
 
@@ -24,6 +24,46 @@ Dependências: numpy, pygrib (que tem várias dependências adicionais) e re
 import numpy as np
 import pygrib
 import re
+
+
+def chuvaSateliteONS(nomeArquivo):
+    """    
+    Lê arquivos texto com chuvas verificadas por satélite. Estes arquivos são disponibilizados    
+    pelo ONS.
+
+    Argumento
+    ---------
+    
+    nomeArquivo : caminho completo para o arquivo de chuvas verificada por satélite.
+    
+    Retorno
+    -------
+    Listas simples com longitudes, latitudes e chuvas. Estas listas precisam ser
+    tratada caso se deseje utilizar modelos de mapa tipo 'contornos'. Recomenda-se utilizar o tipo
+    de mapa 'xy' para este tipo de dado.
+
+    """
+
+    # Listas para acomodares os dados a serem lidos do arquivo txt do ONS.
+    chuva = []
+    lons = []
+    lats = []
+    
+    try:
+        with open(nomeArquivo, 'r') as f:
+            for line in f:                
+                #nomePosto = line[0:10]                             # Uso futuro
+                valores = line[10:]                
+                tmp = re.findall(r'[-+]?\d*\.\d+|\d+', valores)
+                lons.append(float(tmp[1]))
+                lats.append(float(tmp[0]))                 
+                chuva.append(float(tmp[2]))
+    
+    except:
+        raise NameError('Erro ao tentar abrir/acessar arquivo: {}'.format(nomeArquivo))       
+
+    return lons, lats, chuva
+
 
 def chuvaTxtONS(nomeArquivo, soValores=False):
     """
@@ -99,8 +139,9 @@ def chuvaTxtONS(nomeArquivo, soValores=False):
   
     # Conversão dos valores de 'string' para 'float'
     lons = [float(i) for i in lons]
-    lats = [float(i) for i in lats] 
-   
+    lats = [float(i) for i in lats]  
+       
+
     # Transforma a lista 'chuva' em uma matriz e altera o seu 'formato' para compatibilidade com a o número de longitutes 
     # e latitudes. Veja o método 'reshape' do 'numpy' para maiores detalhes.
     chuva = np.array(chuva,dtype=float)    
