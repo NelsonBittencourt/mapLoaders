@@ -5,7 +5,7 @@
 Rotinas de exemplo do uso do módulo 'mapLoaders'
               
 Autor   : Nelson Rossi Bittencourt
-Versão  : 0.111
+Versão  : 0.112
 Licença : MIT
 Dependências: plotMap, mapLoaders
 ******************************************************************************
@@ -42,7 +42,7 @@ def exemploTxtsONS():
     diasModelos = [10,14,14]
 
     # Lê modelo de mapa do arquivo.
-    mapaModelo = plotMap.loadMapTemplate('template/ChuvaPrevistaONS.dat')
+    mapaModelo = plotMap.loadMapTemplate('templates/ChuvaPrevistaONS.dat')
 
     # Loop para os três modelos que o ONS utiliza.
     for i in range(len(nomesModelos)):
@@ -151,7 +151,7 @@ def exemploCPTEC(modelo):
 
     # TODO: Passar o template de mapa com argumento da função.
     # Cria um objeto 'Mapa', com o modelo de mapa, para uso no plotMap.
-    mapaModelo = plotMap.loadMapTemplate('template/ChuvaPrevistaONS.dat')
+    mapaModelo = plotMap.loadMapTemplate('templates/ChuvaPrevistaONS.dat')
 
     # Variável que conterá o somatório das chuvas diárias.
     chuvaTotal =  0      
@@ -231,7 +231,7 @@ def exemploSateliteONS():
     """
 
     # Carrega o template já considerando a tipo de mapa como 'xy'.
-    mapaModelo = plotMap.loadMapTemplate('template/ChuvaSatONS.dat')
+    mapaModelo = plotMap.loadMapTemplate('templates/ChuvaSatONS.dat')
 
     # Lê os dados do arquivo.
     lons, lats, chuva = mapLoaders.chuvaSateliteONS('precSatONS/psat_23052021.txt')
